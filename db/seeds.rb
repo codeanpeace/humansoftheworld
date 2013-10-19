@@ -1,8 +1,11 @@
-@oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_SECRET'], root_url)
+@oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_SECRET'])
 
 @graph = Koala::Facebook::API.new(@oauth.get_app_access_token)
 
 search = @graph.search('humans of', {type: 'page'})
+
+search = search.next_page
+
 search.delete_if {|results| results['name'][0..9] != 'Humans of ' }
 
 search.each do |result|

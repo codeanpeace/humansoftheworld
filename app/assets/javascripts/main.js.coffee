@@ -8,4 +8,26 @@ $ ->
       maxZoom: 18
   }).addTo(map);
 
-  marker = L.market([51.5, -0.09]).addTo(map)
+  mark = (marker) ->
+    latitude = marker['latitude']
+    longitude = marker['longitude']
+    about = marker['about']
+    address = marker['address']
+    cover_source = marker['cover_source']
+    created_at = marker['created_at']
+    description = marker['description']
+    fb_id = marker['fb_id']
+    id = marker['id']
+    latitude = marker['latitude']
+    likes = marker['likes']
+    link = marker['link']
+    longitude = marker['longitude']
+    name = marker['name']
+    place = marker['place']
+    talking_about_count = marker['talking_about_count']
+    updated_at = marker['updated_at']
+    marker = L.marker([latitude, longitude]).addTo(map)
+    marker.bindPopup("<a href=#{link} target='_tab'>#{name}</a>")
+
+  pages = gon.pages
+  mark page for page in pages

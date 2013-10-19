@@ -105,6 +105,9 @@ GEM
       thor (>= 0.13.6)
     fssm (0.2.10)
     geocoder (1.1.8)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -243,6 +246,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   geocoder
+  gon
   haml-rails
   jquery-rails
   koala (~> 1.7.0rc1)
