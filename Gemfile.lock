@@ -124,6 +124,7 @@ GEM
       addressable
       faraday
       multi_json
+    leaflet-rails (0.6.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -245,6 +246,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   koala (~> 1.7.0rc1)
+  leaflet-rails
   meta_request
   pg
   pry

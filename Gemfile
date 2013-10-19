@@ -77,3 +77,4 @@ gem 'quiet_assets'
 
 gem 'koala', '~> 1.7.0rc1'
 gem 'geocoder'
+gem 'leaflet-rails'
