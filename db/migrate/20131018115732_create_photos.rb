@@ -3,11 +3,13 @@ class CreatePhotos < ActiveRecord::Migration
     create_table :photos do |t|
       t.string :fb_id
       t.string :created_time
-      t.string :likes_count
+      t.integer :likes
       t.string :picture
       t.string :link
       t.float :latitude
       t.float :longitude
+      t.integer :shares
+      t.text :message
       t.references :page
 
       t.timestamps

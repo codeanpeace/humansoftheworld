@@ -46,19 +46,4 @@ ActiveRecord::Schema.define(:version => 20131018141015) do
     t.datetime "updated_at",          :null => false
   end
 
-  create_table "photos", :force => true do |t|
-    t.string   "fb_id"
-    t.string   "created_time"
-    t.string   "likes_count"
-    t.string   "picture"
-    t.string   "link"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "page_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "photos", ["page_id"], :name => "index_photos_on_page_id"
-
 end
