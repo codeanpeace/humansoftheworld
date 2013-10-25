@@ -1,5 +1,5 @@
 $ ->
-  map = L.map('map').setView([51.505, -0.09], 13)
+  map = L.map('map').setView([15.552727, 48.516388], 2)
 
   cm_key = $("#map").data('cmkey')
 
@@ -27,7 +27,42 @@ $ ->
     talking_about_count = marker['talking_about_count']
     updated_at = marker['updated_at']
     marker = L.marker([latitude, longitude]).addTo(map)
-    marker.bindPopup("<a href=#{link} target='_tab'>#{name}</a>")
+    # marker.bindPopup("<a href=#{link} target='_tab'>#{name}</a>")
+    marker.bindPopup("#{name}")
+    $(marker).hover(
+      (ev) -> ev.target.openPopup()
+      # (ev) -> ev.target.closePopup()
+    )
+    $(marker).click (ev) ->
+        name = $(ev.target)[0]['_popup']['_content']
+        ev.preventDefault()
+        if $(this).hasClass('loaded') == false
+          ajax_page(name)
+          $('.loaded').removeClass 'loaded'
+          $(this).addClass 'loaded'
+
+    ajax_page = (name) ->
+      $.ajax
+        url: '/ajax_page'
+        type: 'GET'
+        data:
+          name: name
+        # success: (data, status, response) ->
+        #   page = JSON.parse data['page']
+        #   photos = JSON.parse data['photos']gen
+        #   # $('body').append data[0]
+        success: (data, status, response) ->
+          $('#viewer').html data
+          console.log data
+        error: ->
+          # Hard error
+        # dataType: "json"
+        dataType: "html"
 
   pages = gon.pages
   mark page for page in pages
+
+
+
+# returns name of marker
+# $('.leaflet-popup-content-wrapper a')[0].text

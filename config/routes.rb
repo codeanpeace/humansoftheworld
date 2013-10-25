@@ -1,6 +1,9 @@
 Hotw::Application.routes.draw do
 
-  root to: "main#main"
+  root to: 'main#main'
+
+  get 'ajax_page', to: 'main#ajax_page', as: 'ajax_page'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

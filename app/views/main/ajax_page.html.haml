@@ -1,0 +1,12 @@
+%h3#name= link_to @page.name, @page.link
+%h5#about= @page.about
+#cover-source= link_to image_tag(@page.cover_source), @page.cover_source
+%p#description= @page.description
+%p#created-updated= "Created On #{@page.created_at} | Last Updated #{@page.updated_at}"
+%p#talking-about-count= "Talking About Count: #{@page.talking_about_count}"
+%p#likes= "Likes: #{@page.likes}"
+
+
+
+
+/ @photo
