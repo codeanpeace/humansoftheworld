@@ -1,11 +1,24 @@
 $ ->
-  map = L.map('map').setView([15.552727, 48.516388], 2)
+
+  displayOverlay = false
+
+  $(document).ajaxStart ->
+    if displayOverlay
+      $('.ajax-loading').show()
+
+  $(document).ajaxStop ->
+    displayOverlay = false
+    $('.ajax-loading').hide()
+
+
+  map = L.map('map').setView([15, 25], 2)
 
   cm_key = $("#map").data('cmkey')
 
   L.tileLayer("http://{s}.tile.cloudmade.com/#{cm_key}/997/256/{z}/{x}/{y}.png", {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-      maxZoom: 18
+      maxZoom: 18,
+      minZoom: 2
   }).addTo(map);
 
   mark = (marker) ->
@@ -27,19 +40,23 @@ $ ->
     talking_about_count = marker['talking_about_count']
     updated_at = marker['updated_at']
     marker = L.marker([latitude, longitude]).addTo(map)
+    # just extend marker class!
     # marker.bindPopup("<a href=#{link} target='_tab'>#{name}</a>")
     marker.bindPopup("#{name}")
-    $(marker).hover(
-      (ev) -> ev.target.openPopup()
+
+    $(marker).hover (ev) ->
+      ev.target.openPopup()
       # (ev) -> ev.target.closePopup()
-    )
+      $('#nav-map').html ev.target
+
     $(marker).click (ev) ->
-        name = $(ev.target)[0]['_popup']['_content']
-        ev.preventDefault()
-        if $(this).hasClass('loaded') == false
-          ajax_page(name)
-          $('.loaded').removeClass 'loaded'
-          $(this).addClass 'loaded'
+      name = $(ev.target)[0]['_popup']['_content']
+      ev.preventDefault()
+      if $(this).hasClass('loaded') == false
+        displayOverlay = true
+        ajax_page(name)
+        $('.loaded').removeClass 'loaded'
+        $(this).addClass 'loaded'
 
     ajax_page = (name) ->
       $.ajax
@@ -47,6 +64,9 @@ $ ->
         type: 'GET'
         data:
           name: name
+        beforeSend: () ->
+          # $('#viewer').append "#{image_tag 'ajax_load_map.GIF'}"
+          # $('#viewer').append '<div class="loading"><img src="/images/ajax_load_map.GIF" alt="Loading..." /></div>'
         # success: (data, status, response) ->
         #   page = JSON.parse data['page']
         #   photos = JSON.parse data['photos']gen
@@ -54,6 +74,7 @@ $ ->
         success: (data, status, response) ->
           $('#viewer').html data
           console.log data
+          $('#bottom-map').removeClass 'reveal'
         error: ->
           # Hard error
         # dataType: "json"
