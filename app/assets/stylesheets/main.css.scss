@@ -50,6 +50,27 @@ body, html {
   overflow: hidden;
 }
 
+#date {
+  position: absolute;
+  right: 15px;
+}
+
+#social {
+  position: absolute;
+  left: 15px;
+}
+
+#fb {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 #cover-source {
   display: none;
 }
@@ -69,6 +90,10 @@ body, html {
     line-height: 35px;
     text-decoration: none;
   }
+}
+
+.photo {
+  float: left;
 }
 
 #nav-map {

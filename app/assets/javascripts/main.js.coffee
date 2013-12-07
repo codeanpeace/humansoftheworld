@@ -66,13 +66,22 @@ $ ->
           name: name
         beforeSend: () ->
         success: (data, status, response) ->
-          $('#viewer').html data
+          $('#top-viewer').html data
           console.log data
           $('#viewer').css 'background-image', 'url(' + $('#cover-source img').attr('src') + ')'
-          $('#nav-viewer').html '<p><a href=' + $('#name').attr('href') + '>' + $('#name').text() + '</a></p>'
           $('#bottom-map').removeClass 'reveal'
         error: ->
-        dataType: "html"
+        dataType: 'html'
+      $.ajax
+        url: '/ajax_photos'
+        type: 'GET'
+        data:
+          name: name
+        beforeSend: () ->
+        success: (data, status, response) ->
+          $('#photos_container').html data
+        error: ->
+        dataType: 'html'
 
   pages = gon.pages
   mark page for page in pages

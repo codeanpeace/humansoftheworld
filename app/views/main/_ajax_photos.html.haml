@@ -1,0 +1,20 @@
+- @photos.each do |photo|
+  .photo{id: "fb_id #{photo.fb_id}"}
+    = link_to image_tag(photo.picture), photo.link
+
+/ {"id"=>31,
+/  "fb_id"=>"370361893095858",
+/  "created_time"=>"2013-10-12T16:01:03+0000",
+/  "likes"=>2935,
+/  "picture"=>
+/   "http://photos-d.ak.fbcdn.net/hphotos-ak-frc1/1375178_370361893095858_763173535_s.jpg",
+/  "link"=>
+/   "http://www.facebook.com/photo.php?fbid=370361893095858&set=a.128052357326814.24340.127375187394531&type=1&relevant_count=1",
+/  "latitude"=>nil,
+/  "longitude"=>nil,
+/  "shares"=>90,
+/  "message"=>
+/   "\"She's 12 years old, but she didn't live with me during all her life. In fact, I rescued her from the animal shelter, and she would have been killed if I didn't adopt her.\" \n\n© Humans of Paris",
+/  "page_id"=>2,
+/  "created_at"=>Wed, 23 Oct 2013 18:12:53 UTC +00:00,
+/  "updated_at"=>Wed, 23 Oct 2013 18:12:53 UTC +00:00}

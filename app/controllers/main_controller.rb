@@ -25,4 +25,10 @@ class MainController < ApplicationController
     # end
   end
 
+  def ajax_photos
+    @page = Page.where(name: params[:name]).first
+    @photos = @page.photos
+    render partial: 'ajax_photos', locals: {page: @page, photos: @photos}, layout: false
+  end
+
 end
